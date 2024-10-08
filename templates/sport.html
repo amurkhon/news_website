@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+
+ {% load static%}
+
+ {% block title %} Jahon yangiliklari {% endblock%}
+
+ {% block content %}
+ <div class="container">
+  <div class="row">
+    <div class="col">
+      {% for news in sport_yangiliklari %}
+      <div class="p-3 m-1">
+        <a href="{{news.get_absolute_url}}">
+          <img src="{{news.image.url}}" alt="{{news.title}}" style="height: auto;width: 20%;">
+          {{news.title}}
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+ </div>
+ {% endblock content %}

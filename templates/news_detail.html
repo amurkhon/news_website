@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News detail</title>
+</head>
+<body>
+  {% block content %}
+    <h2>{{news.title}}</h2>
+    <img src="{{news.image.url}}" alt="" width=50% height=auto>
+    <h4>{{news.pulished_time}}</h4>
+    <p>{{news.body}}</p>
+  {% endblock content %}
+</body>
+</html>
