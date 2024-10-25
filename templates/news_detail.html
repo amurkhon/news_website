@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+
+{% load hitcount_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +15,46 @@
     <img src="{{news.image.url}}" alt="" width=50% height=auto>
     <h4>{{news.pulished_time}}</h4>
     <p>{{news.body}}</p>
+    <p>Ko'rishlar soni: 
+      {% get_hit_count for news %}</p>
+    {% if request.user.is_authenticated and request.user.is_superuser %}
+    <div class="card-footer text-center">
+      <a href="{% url 'news_edit' news.slug %}">Edit</button></a> |
+      <a href="{% url 'news_delete' news.slug %}">Delete</a>
+    </div>
+    {% endif %}
+    <div class="container">
+      <div class="row">
+        <div class="col-8">
+          {% if comments %}
+          <p>Bu yangilikga {{comments.count}} ta izoh qoldirilgan.</p>
+          {% else %}
+          <p>Bu yangilikga izoh qoldirilmagan.</p>
+          {% endif %}
+          {% for comment in comments %}
+          <div class="card" style="margin-bottom: 0.5rem;">
+            <div class="card-body">
+              <p class="card-text">{{comment.body}}</p>
+              <div class="card-footer text-muted">
+                by {{comment.user}}
+                {{comment.created_time}}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% if request.user.is_authenticated %}
+      <div class="comment_form">
+        <form method="post">{% csrf_token %}
+          {{comment_form.as_p}}
+          <button type="submit" class="btn btn-primary">Izoh qoldirish</button>
+        </form>
+      </div>
+      {% else %}
+      <p>Siz xabarga izoh qoldirishni xohlasangiz <a href="{% url 'user_register' %}">ro'yxatdan o'ting</a> yoki <a href="{% url 'login' %}"> login</a> qiling!</p>
+      {% endif %}
+    </div>
   {% endblock content %}
 </body>
 </html>

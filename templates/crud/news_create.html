@@ -1,0 +1,13 @@
+{% extends 'base.html'%}
+
+{% load static %}
+
+{% block title %} Yangi news {% endblock title%}
+
+{% block content %}
+<h2 class="text-center">Saytga yangilik qo'shish!</h2>
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+  {{form.as_p}}
+  <input type="submit" class="btn btn-info ml-2" placeholder="Create" value="Save">
+</form>
+{% endblock content %}

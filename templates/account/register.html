@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Foydalanuvchini ro'yxatdan o'tkazish {% endblock title%}
+
+{% block content %}
+<h2>Foydalanuvchini ro'yxatdan o'tkazish</h2>
+<p>Ro'yxatdan o'tish uchun quyidagi formani to'ldiring.</p>
+<form method="post">{% csrf_token %}
+  {{user_form.as_p}}
+  <button class="btn btn-primary border rounded" type="submit">Submit</button>
+</form>
+
+
+{% endblock content %}

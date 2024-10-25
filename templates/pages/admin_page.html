@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Admin sahifasi {% endblock title%}
+
+{% block content %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Username</th>
+      <th scope="col">Firstname</th>
+      <th scope="col">Lastname</th>
+      <th scope="col">Date of birth</th>
+    </tr>
+  </thead>
+  {% for user in admin_users%}
+  <tbody>
+    <tr>
+      <td>{{user.pk}}</td>
+      <td>{{user.username}}</td>
+      <td>{{user.first_name}}</td>
+      <td>{{user.last_name}}</td>
+      <td>{{user.date_of_birth}}</td>
+    </tr>
+  </tbody>
+  {% endfor %}
+</table>
+<h2 class="text-danger"><a href="{% url 'news_create' %}">+Yangilik qo'shish</a></h2>
+{% endblock content %}

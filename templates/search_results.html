@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %} Search results {% endblock title%}
+
+{% block content %}
+
+{% for yangilik in barcha_yangiliklar %}
+<a href="{% url 'news_detail_page' yangilik.pk %}">
+  <p>{{yangilik.title}}</p>
+  <p><img src="{{yangilik.image.url}}" style="width: 30%;" alt=""></p>
+</a>
+{% endfor %}
+
+{% endblock content%}

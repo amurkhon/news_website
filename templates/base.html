@@ -31,9 +31,20 @@
               <li><a href="{% url 'home_page'%}">Home</a></li>
               <li><a href="#">About</a></li>
               <li><a href="{% url 'contact_page'%}">Contact</a></li>
+              <li>
+                <form action="{% url 'search_results' %}" method="get">
+                  <input type="search" placeholder="Izlash.." name="q", class="form-control">
+                </form>
+              </li>
             </ul>
           </div>
           <div class="header_top_right">
+            {% if request.user.is_authenticated %}
+            <p><a href="{% url 'logout' %}" class="text-white">Logout</a></p>
+            <p><a href="{% url 'user_profile' %}" class="text-white">My profile</a></p>
+            {% else %}
+            <p><a href="{% url 'login'%}">Kirish</a></p>
+            {% endif %}
             <p>{% now "jS F Y H:i" %}</p>
           </div>
         </div>

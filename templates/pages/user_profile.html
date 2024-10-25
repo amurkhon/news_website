@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %} Login sahifasi {% endblock title%}
+
+{% load static%}
+
+{% block content%}
+
+<div class="container">
+  <div class="row m-5 bg-light text-white">
+    <div class="col-12">
+      <img src="{{profile.photo.url}}" style="width:10%; border-radius: 50%;" alt="There can be a picture!">
+      <h3>{{user.last_name}} {{user.first_name}}</h3>
+      <a href="#" class="btn btn-primary">Ma'lumotlarni o'zgartirish</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <label for="number">Telefon raqamingiz</label>
+      <input type="text" placeholder="+998911455884" readonly>
+    </div>
+    <div class="col-4">
+      <label for="email">Elektron manzilingiz</label>
+      <p>{{user.email}}</p>
+    </div>
+    <div class="col-4">
+      <label for="birthday">Date of birth</label>
+      <p>{{profile.date_of_birth}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8 text-left">
+      <label for="text">Parolni o'zgartirish</label>
+      <p>Bu yerda hisobingiz parolini o'zgartirishingiz mumkin</p>
+    </div>
+    <div class="col-4 inline">
+      <a href="{% url 'password_change' %}" class="btn btn-primary border background-white">Parolni o'zgartirish<i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+      <a href="{% url 'logout' %}" class="btn btn-primary border background-white">Log out<i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h4 class="text-info">Agar siz profil ma'lumotlaringizni tahrirlamoqchi bo'lsangiz quyidagi havolga o'ting!</h4>
+      <a href="{% url 'edit_user_information' %}" class="text-primary">Ma'lumotlarni taxrirlash</a>
+    </div>
+  </div>
+</div>
+
+{% endblock content%}
