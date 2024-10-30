@@ -120,7 +120,9 @@ class DeleteNewsView(OnlyLoggedSuperUser, DeleteView):
 
 class CreateNews(OnlyLoggedSuperUser, CreateView):
   model = News
-  fields = ('title','slug','image','body','category','status')
+  fields = ('title','title_uz','title_en','title_ru',
+            'slug','image','body','body_uz','body_en','body_ru',
+            'category','status')
   template_name = 'crud/news_create.html'
 
 # def contactPageView(request):
